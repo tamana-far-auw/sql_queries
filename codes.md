@@ -9,7 +9,7 @@ SCHEMA :
 	    );
 	    
 	    
-	-- NEXT TABLE TO CONNECT WITH FIRST ONE
+-- NEXT TABLE TO CONNECT WITH FIRST ONE
 	
 	CREATE TABLE products(
 		product_id INTEGER PRIMARY KEY AUTO_INCREMENT,
@@ -43,7 +43,8 @@ SCHEMA :
     UPDATE table_data SET user_name = CONCAT(user_name, ' FARZAMI')
     
 
-	queries : 
+queries : 
+	
 		 -- SELECT * FROM table_data  WHERE LENGTH(user_name) <= 5
 		-- SELECT
 		-- user_name AS name,
@@ -57,7 +58,8 @@ SCHEMA :
 	AS my_data 
 	FROM table_data;
 
-	Assignmet 
+Assignmet 
+	
 	CREATE TABLE DeliveryInformation ( delivery_id INT PRIMARY KEY, destination VARCHAR(100) NOT NULL, delivery_time VARCHAR(20) NOT NULL ); 
 
 	CREATE TABLE OrderInformation ( order_id INT PRIMARY KEY, food_item VARCHAR(100) NOT NULL, quantity INT NOT NULL, delivery_id INT, FOREIGN KEY (delivery_id) REFERENCES DeliveryInformation(delivery_id) );
@@ -69,6 +71,25 @@ SCHEMA :
 	 INSERT INTO OrderInformation VALUES (1, 'Burger', 2, 1), (2, 'Pizza', 1, 2), (3, 'Sandwich', 3, 3), (4, 'Pasta', 2, 4), (5, 'Fried Rice', 1, 5);
 	
 	INSERT INTO DeliveryStatus VALUES (1, 1, 'Yes'), (2, 2, 'No'), (3, 3, 'Yes'), (4, 4, 'No'), (5, 5, 'Yes');
-	
-	
 
+---QURIES
+	
+	select * from DeliveryInformation; 
+	select * from OrderInformation;
+	select * from DeliveryStatus;
+	
+	SELECT di.delivery_id, di.destination, ds.delivered FROM DeliveryInformation di JOIN DeliveryStatus ds ON di.delivery_id = ds.delivery_id;
+	
+	
+	SELECT food_item, quantity FROM OrderInformation ORDER BY quantity DESC LIMIT 1;
+	
+	
+	SELECT DISTINCT destination FROM DeliveryInformation;
+	
+	
+	SELECT food_item, SUM(quantity) AS total_quantity
+	FROM OrderInformation
+	GROUP BY food_item;
+		
+		
+	
